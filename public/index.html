@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation API Musicale Discord</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        :root {
+            --bg-color: black;
+            --text-color: white;
+            --accent-color: #2e59d1;
+            --secondary-color: #2c2f33;
+            --code-bg: #2f3136;
+        }
+        body {
+            font-family: "Poppins", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        header {
+            background: var(--secondary-color);
+            padding: 30px 0;
+            border-bottom: var(--accent-color) 3px solid;
+        }
+        header h1 {
+            margin: 0;
+            text-align: center;
+            color: var(--accent-color);
+        }
+        .logo {
+            width: 50px;
+            height: 100px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .headphone {
+            width: 80px;
+            height: 80px;
+            border: 10px solid var(--accent-color);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .headphone::before, .headphone::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 50px;
+            background: var(--accent-color);
+            top: -25px;
+        }
+        .headphone::before {
+            left: 10px;
+            transform: rotate(-30deg);
+        }
+        .headphone::after {
+            right: 10px;
+            transform: rotate(30deg);
+        }
+        .endpoint {
+            background: var(--secondary-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .endpoint:hover {
+            transform: scale(1.02);
+        }
+        .code-block {
+            background: var(--code-bg);
+            border: 1px solid #444;
+            border-radius: 3px;
+            padding: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 8px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        .copy-btn:hover {
+            background: #5a6fb4;
+        }
+        .language-tabs {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .language-tab {
+            padding: 5px 10px;
+            border-radius: 5px;
+            background: var(--secondary-color);
+            border: 1px solid var(--accent-color);
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .language-tab.active {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        span, h2 {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo floating">
+            <div class="headphone"></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Introduction</h2>
+        <p>Bienvenue dans la documentation de l'API Musicale pour bots Discord créée par addamsontop. Cette API vous permet d'intégrer facilement des fonctionnalités musicales dans vos bots Discord.</p>
+
+        <h2>Authentification</h2>
+        <p>Toutes les requêtes doivent inclure un token d'API dans l'en-tête <span>x-api-token</span>.</p>
+
+        <!-- Nouvelle section pour les requêtes ajoutées -->
+        <div class="endpoint">
+            <h3>Rejoindre un salon vocal</h3>
+            <p><strong>POST</strong> <span>/join</span></p>
+            <p>Permet au bot de rejoindre un salon vocal.</p>
+            
+            <div class="language-tabs">
+                <div class="language-tab active" data-lang="js">JavaScript</div>
+                <div class="language-tab" data-lang="bdfd">BDFD</div>
+            </div>
+
+            <div class="code-block" data-lang="js">
+                <button class="copy-btn">Copier</button>
+                <pre><code class="language-javascript">
+fetch('https://addams-song.vercel.app/api/join', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-token': 'votre_token_secret'
+  },
+  body: JSON.stringify({
+    guildId: 'ID_DU_SERVEUR',
+    voiceChannelId: 'ID_DU_SALON_VOCAL'
+  })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Erreur:', error));
+                </code></pre>
+            </div>
+
+            <div class="code-block" data-lang="bdfd" style="display: none;">
+                <button class="copy-btn">Copier</button>
+                <pre><code class="language-javascript">
+$httpPost[https://addams-song.vercel.app/api/join;{"guildId":"ID_DU_SERVEUR","voiceChannelId":"ID_DU_SALON_VOCAL"}]
+$httpHeader[x-api-token: votre_token_secret]
+$nomention Le bot a rejoint le salon vocal.
+                </code></pre>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Jouer une chanson</h3>
+            <p><strong>POST</strong> <span>/play</span></p>
+            <p>Le bot joue une chanson dans le salon vocal.</p>
+
+            <div class="language-tabs">
+                <div class="language-tab active" data-lang="js">JavaScript</div>
+                <div class="language-tab" data-lang="bdfd">BDFD</div>
+            </div>
+
+            <div class="code-block" data-lang="js">
+                <button class="copy-btn">Copier</button>
+                <pre><code class="language-javascript">
+fetch('https://addams-song.vercel.app/api/play', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-token': 'votre_token_secret'
+  },
+  body: JSON.stringify({
+    guildId: 'ID_DU_SERVEUR',
+    voiceChannelId: 'ID_DU_SALON_VOCAL',
+    songUrl: 'URL_DE_LA_CHANSON'
+  })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Erreur:', error));
+                </code></pre>
+            </div>
+
+            <div class="code-block" data-lang="bdfd" style="display: none;">
+                <button class="copy-btn">Copier</button>
+                <pre><code class="language-javascript">
+$httpPost[https://addams-song.vercel.app/api/play;{"guildId":"ID_DU_SERVEUR","voiceChannelId":"ID_DU_SALON_VOCAL","songUrl":"URL_DE_LA_CHANSON"}]
+$httpHeader[x-api-token: votre_token_secret]
+$nomention Lecture de la chanson en cours.
+                </code></pre>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Arrêter la chanson</h3>
+            <p><strong>POST</strong> <span>/stop</span></p>
+            <p>Le bot arrête la lecture de la chanson dans le salon vocal.</p>
+
+            <div class="language-tabs">
+                <div class="language-tab active" data-lang="js">JavaScript</div>
+                <div class="language-tab" data-lang="bdfd">BDFD</div>
+            </div>
+
+            <div class="code-block" data-lang="js">
+                <button class="copy-btn">Copier</button>
+                <pre><code class="language-javascript">
+fetch('https://addams-song.vercel.app/api/stop', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-token': 'votre_token_secret'
+  },
+  body: JSON.stringify({
+    guildId: 'ID_DU_SERVEUR'
+  })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Erreur:', error));
+                </code></pre>
+            </div>
+
+            <div class="code-block" data-lang="bdfd" style="display: none;">
+                <button class="copy-btn">Copier</button>
+                <pre><code class="language-javascript">
+$httpPost[https://addams-song.vercel.app/api/stop;{"guildId":"ID_DU_SERVEUR"}]
+$httpHeader[x-api-token: votre_token_secret]
+$nomention Le bot a arrêté la lecture.
+                </code></pre>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Reprendre la chanson</h3>
+            <p><strong>POST</strong> <span>/continue</span></p>
+            <p>Le bot reprend la lecture de la chanson dans le salon vocal.</p>
+
+            <div class="language-tabs">
+                <div class="language-tab active" data-lang="js">JavaScript</div>
+                <div class="language-tab" data-lang="bdfd">BDFD</div>
+            </div>
+
+            <div class="code-block" data-lang="js">
+                <button class="copy-btn">Copier</button>
+                <pre><code class="language-javascript">
+fetch('https://addams-song.vercel.app/api/continue', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-token': 'votre_token_secret'
+  },
+  body: JSON.stringify({
+    guildId: 'ID_DU_SERVEUR'
+  })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Erreur:', error));
+                </code></pre>
+            </div>
+
+            <div class="code-block" data-lang="bdfd" style="display: none;">
+                <button class="copy-btn">Copier</button>
+                <pre><code class="language-javascript">
+$httpPost[https://addams-song.vercel.app/api/continue;{"guildId":"ID_DU_SERVEUR"}]
+$httpHeader[x-api-token: votre_token_secret]
+$nomention Le bot a repris la lecture.
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script>
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const codeBlock = button.nextElementSibling;
+                copyToClipboard(codeBlock.textContent);
+                button.textContent = 'Copié !';
+                setTimeout(() => {
+                    button.textContent = 'Copier';
+                }, 2000);
+            });
+        });
+
+        document.querySelectorAll('.language-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const lang = tab.getAttribute('data-lang');
+                const parent = tab.closest('.endpoint');
+            
+                parent.querySelectorAll('.language-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                parent.querySelectorAll('.code-block').forEach(block => {
+                    block.style.display = block.getAttribute('data-lang') === lang ? 'block' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
